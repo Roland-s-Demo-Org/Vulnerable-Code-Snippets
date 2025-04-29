@@ -21,9 +21,8 @@ new mysql.Database(
 ).connect(function(error)
 {
 	var the_Query =
-	"INSERT INTO Customers (CustomerName, ContactName) VALUES ('Tom'," +
-	valTom + ")";
-	this.query(the_Query).execute(function(error, result)
+	"INSERT INTO Customers (CustomerName, ContactName) VALUES ('Tom', ?)";
+	this.query(the_Query).params([valTom]).execute(function(error, result)
 	{
 		if (error)
 		{
