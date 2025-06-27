@@ -13,7 +13,9 @@ namespace WebFox.Controllers
         public string os(string binFile)
         {
             Process p = new Process();
-            p.StartInfo.FileName = binFile; // Noncompliant
+            if (!Path.GetFullPath(binFile).StartsWith(Path.GetFullPath("/allowed/bin/"), StringComparison.OrdinalIgnoreCase))
+                throw new UnauthorizedAccessException("Access to the specified file is not allowed.");
+            p.StartInfo.FileName = Path.GetFullPath(binFile);
             p.StartInfo.RedirectStandardOutput = true;
             p.Start();
             string output = p.StandardOutput.ReadToEnd();
