@@ -13,7 +13,7 @@ namespace WebFox.Controllers
         public string os(string binFile)
         {
             Process p = new Process();
-            p.StartInfo.FileName = binFile; // Noncompliant
+            p.StartInfo.FileName = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "allowed_binaries", Path.GetFileName(binFile)));
             p.StartInfo.RedirectStandardOutput = true;
             p.Start();
             string output = p.StandardOutput.ReadToEnd();
