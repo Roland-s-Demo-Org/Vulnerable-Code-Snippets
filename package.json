@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@aikidosec/firewall": "^1.7.15"
+  }
+}
