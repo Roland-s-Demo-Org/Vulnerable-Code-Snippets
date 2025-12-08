@@ -7,6 +7,10 @@ namespace WebFox.Controllers.PathTraversal
         [HttpGet("{path}")]
         public void Test(string path)
         {
+            if (path == null || path.Contains("../") || path.Contains(@"..\"))
+            {
+                throw new ArgumentException("Invalid file path");
+            }
             System.IO.File.Delete(path);
         }
 
