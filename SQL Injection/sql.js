@@ -1,6 +1,7 @@
 var express = require('express')
-
+var helmet = require('helmet')
 var app = express()
+app.use(helmet())
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('database', 'username', 'password', {
   dialect: 'sqlite',
