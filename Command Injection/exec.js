@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router()
 
-const { exec, spawn }  = require('child_process');
+const { execFile, exec, spawn }  = require('child_process');
 
 
 router.post('/ping', (req,res) => {
-    exec(`${req.body.url}`, (error) => {
+    execFile(req.body.url, [], (error) => {
         if (error) {
             return res.send('error');
         }
