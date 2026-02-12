@@ -13,6 +13,10 @@ namespace WebFox.Controllers.PathTraversal
         {    
             try
             {
+                if (userInput == null || userInput.Contains("../") || userInput.Contains(@"..\"))
+                {
+                    throw new ArgumentException("Invalid file path");
+                }
                 var fullPath = Path.Combine(RootFolder, userInput);
                 System.IO.File.Delete(fullPath);
             }    
