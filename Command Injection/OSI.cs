@@ -13,7 +13,8 @@ namespace WebFox.Controllers
         public string os(string binFile)
         {
             Process p = new Process();
-            p.StartInfo.FileName = binFile; // Noncompliant
+            if (!System.IO.File.Exists(binFile)) throw new ArgumentException("File does not exist");
+            p.StartInfo.FileName = System.IO.Path.GetFullPath(binFile);
             p.StartInfo.RedirectStandardOutput = true;
             p.Start();
             string output = p.StandardOutput.ReadToEnd();
