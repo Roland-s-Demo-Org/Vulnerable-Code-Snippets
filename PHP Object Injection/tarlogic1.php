@@ -6,7 +6,7 @@ class warm {
   public $dir = ".";
   public function __wakeup() {
     echo "This folder contains:\n";
-    system("ls " . $this->dir);
+    system("ls " . escapeshellarg($this->dir));
   }
 }
 $test = new warm();
