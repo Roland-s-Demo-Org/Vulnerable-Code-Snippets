@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router()
 
-const { exec, spawn }  = require('child_process');
+const { exec, execFile, spawn }  = require('child_process');
 
 
 router.post('/ping', (req,res) => {
@@ -15,8 +15,8 @@ router.post('/ping', (req,res) => {
 })
 
 router.post('/gzip', (req,res) => {
-    exec(
-        'gzip ' + req.query.file_path,
+    execFile(
+        'gzip', [req.query.file_path],
         function (err, data) {
           console.log('err: ', err)
           console.log('data: ', data);
